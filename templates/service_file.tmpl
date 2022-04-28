@@ -1,0 +1,20 @@
+package services
+
+import (
+	"{{.DependencyName}}/pkgs/wrapper"
+	"{{.RepoName}}/logic/msg"
+	"{{.RepoName}}/logic/services"
+	"{{.RepoName}}/pkgs/base"
+
+	"github.com/gin-gonic/gin"
+)
+
+type {{.ModelName}}Service struct {
+	baseRepo *repo.BaseRepo
+}
+
+func new{{.ModelName}}Service(baseRepo *repo.BaseRepo) *{{.ModelName}}Service {
+	return &{{.ModelName}}Service{baseRepo:baseRepo}
+}
+
+{{template "service_func.tmpl" .}}

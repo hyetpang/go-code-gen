@@ -1,0 +1,21 @@
+package handlers
+
+import (
+	"{{.DependencyName}}/pkgs/wrapper"
+	"{{.RepoName}}/logic/msg"
+	"{{.RepoName}}/logic/services"
+	"{{.RepoName}}/pkgs/base"
+
+	"github.com/gin-gonic/gin"
+)
+
+type {{.ModelName}}Handler struct {
+	{{.DModelName}}Service *services.{{.ModelName}}Service
+}
+
+func new{{.ModelName}}Handler({{.DModelName}}Service *services.{{.ModelName}}Service) *{{.ModelName}}Handler {
+	return &{{.ModelName}}Handler{
+		{{.DModelName}}Service:{{.DModelName}}Service,
+	}
+}
+{{template "handler_func.tmpl" .}}

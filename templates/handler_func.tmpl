@@ -1,0 +1,23 @@
+{{define "handler_func.tmpl"}}
+{{end}}
+
+// @Summary      {{.DocDesc}}
+// @Description  {{.DocDesc}}
+// @Tags         {{.DocTag}}
+// @Produce      json
+// @Param        {{.ParamType}}  {{.ParamType}}    msg.{{.ModelName}}{{.MethodName}}Req  true  "body参数"
+// @Success      200   object  msg.{{.ModelName}}{{.MethodName}}Rsp
+// @Router       {{.DocUrl}} [{{.DocUrlMethod}}]
+func ({{.DModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
+	req := new(msg.{{.ModelName}}{{.MethodName}}Req)
+	if err := ctx.ShouldBind(req); err != nil {
+		wrapper.Wrap(ctx).Fail(base.CodeErrParamsInvalid)
+		return
+	}
+	data, codeErr := {{.DModelName}}Handler.{{.DModelName}}Service.{{.MethodName}}(req)
+	if codeErr != nil {
+		wrapper.Wrap(ctx).Fail(codeErr)
+		return
+	}
+	wrapper.Wrap(ctx).Success(data)
+}
