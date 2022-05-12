@@ -5,16 +5,14 @@ import (
 	"{{.RepoName}}/logic/msg"
 	"{{.RepoName}}/logic/services"
 	"{{.RepoName}}/pkgs/base"
-
-	"github.com/gin-gonic/gin"
 )
 
-type {{.ModelName}}Service struct {
-	baseRepo *repo.BaseRepo
+type {{.DModelName}}Service struct {
+
 }
 
-func new{{.ModelName}}Service(baseRepo *repo.BaseRepo) *{{.ModelName}}Service {
-	return &{{.ModelName}}Service{baseRepo:baseRepo}
+func new{{.DModelName}}Service() *{{.DModelName}}Service {
+	return &{{.DModelName}}Service{}
 }
 
 {{template "service_func.tmpl" .}}

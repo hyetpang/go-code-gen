@@ -1,8 +1,7 @@
 {{define "service_func.tmpl"}}
 {{end}}
-
 // {{.DocDesc}}
-func ({{.DModelName}}Service *{{.ModelName}}Service) {{.MethodName}}(req *msg.{{.ModelName}}{{.MethodName}}Req)(*msg.{{.ModelName}}{{.MethodName}}Rsp,base.CodeErrI) {
+func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req)({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp,base.CodeErrI) {
 	// TODO 待实现
-	return &msg.{{.ModelName}}{{.MethodName}}Rsp,nil
+	return &msg.{{.DModelName}}{{.MethodName}}Rsp,nil
 }

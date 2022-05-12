@@ -10,12 +10,12 @@ import (
 )
 
 type {{.ModelName}}Handler struct {
-	{{.DModelName}}Service *services.{{.ModelName}}Service
+	{{.ModelName}}Service *services.{{.DModelName}}Service
 }
 
-func new{{.ModelName}}Handler({{.DModelName}}Service *services.{{.ModelName}}Service) *{{.ModelName}}Handler {
+func new{{.DModelName}}Handler({{.ModelName}}Service *services.{{.DModelName}}Service) *{{.ModelName}}Handler {
 	return &{{.ModelName}}Handler{
-		{{.DModelName}}Service:{{.DModelName}}Service,
+		{{.ModelName}}Service:{{.ModelName}}Service,
 	}
 }
 {{template "handler_func.tmpl" .}}
