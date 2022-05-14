@@ -11,7 +11,7 @@
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
 	if err := ctx.ShouldBind(req); err != nil {
-		wrapper.Wrap(ctx).Fail(base.CodeErrParamsInvalid)
+		wrapper.Wrap(ctx).Fail(codes.CodeErrParamsInvalid)
 		return
 	}
 	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req)

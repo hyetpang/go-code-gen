@@ -116,8 +116,8 @@ func WithLogicPath(logicPath string) Option {
 	}
 }
 
-func WithRspParamType(paramType string) Option {
+func WithRspParamType() Option {
 	return func(c *Config) {
-		c.RspParamType = paramType
+		c.RspParamType = "array"
 	}
 }

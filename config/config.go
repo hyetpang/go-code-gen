@@ -47,7 +47,7 @@ func New(options ...Option) *Config {
 	if common.UpperFirst(c.DocUrlMethod) == http.MethodGet {
 		c.ReqParamType = "query"
 	}
-	if c.RspParamType != "array" {
+	if c.RspParamType == "array" {
 		c.RspType = "[]"
 	}
 	c.Temps = template.Must(template.ParseGlob("./templates/*.tmpl"))

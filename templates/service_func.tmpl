@@ -3,5 +3,5 @@
 // {{.DocDesc}}
 func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req)({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp,base.CodeErrI) {
 	// TODO 待实现
-	return &msg.{{.DModelName}}{{.MethodName}}Rsp,nil
+	{{if .RspType}}return {{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp{},nil {{else}}return &msg.{{.DModelName}}{{.MethodName}}Rsp{},nil {{end}}
 }

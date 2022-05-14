@@ -19,7 +19,7 @@ func fileCreate(filePath, tempFile string, c *config.Config) {
 }
 
 func fileAppend(filePath, tempFile string, c *config.Config) {
-	file, err := os.OpenFile(filePath, os.O_APPEND, 0)
+	file, err := os.OpenFile(filePath, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
 		panic(err)
 	}
