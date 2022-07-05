@@ -121,3 +121,10 @@ func WithRspParamType() Option {
 		c.RspParamType = "array"
 	}
 }
+
+// 是否请求参数需要生成ip字段
+func WithAddIpToReqParam() Option {
+	return func(c *Config) {
+		c.IsAddIp = true
+	}
+}

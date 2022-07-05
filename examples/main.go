@@ -17,16 +17,14 @@ import (
 
 func main() {
 	strategy.Run(config.New(
-		config.WithModeName("UltraboxNotice"),                                                // 模型名字
-		config.WithMethodName("Validate"),                                                    // 要生成的方法
-		config.WithDocDesc("活动详情"),                                                           // 文档描述
-		config.WithDocUrl("/ultrabox/api/v1/activity"),                                       // url
-		config.WithDocUrlMethod("GET"),                                                       // 请求method
-		config.WithDocTag("游戏盒子客户端-活动"),                                                      // 文档分类tags
-		config.WithLogicPath("/projects/ultrasdk/ultrasdk.hub.go/cmd/ultrabox_client/logic"), // 仓库中的logic目录，
-		// config.WithLogicPath("/projects/ultrasdk/ultrasdk.hub.go/logic"), // 仓库中的logic目录，
-		// config.WithRspParamType(),                                                            // services层逻辑处理返回的响应，如果不指定返回对象，指定返回数组
-		config.WithDependencyName("github.com/HyetPang/go-frame"),  // 依赖库
-		config.WithRepoName("ultrasdk.hub.go/cmd/ultrabox_client"), // 包含logic目录的仓库目录
+		config.WithModeName("GameAgentChannel"),                          // 模型名字
+		config.WithMethodName("Subordinate"),                             // 要生成的方法
+		config.WithDocDesc("获取我的下级用户id"),                                 // 文档描述
+		config.WithDocUrl("/ultra//api/services/game/agent/subordinate"), // url
+		config.WithDocUrlMethod("GET"),                                   // 请求method
+		config.WithDocTag("经销商"),                                         // 文档分类tags
+		config.WithLogicPath("/projects/ultrasdk/ultrasdk.hub.go/logic"), // 仓库中的logic目录，
+		config.WithDependencyName("github.com/HyetPang/go-frame"),        // 依赖库
+		config.WithRepoName("ultrasdk.hub.go"),                           // 包含logic目录的仓库目录
 	))
 }

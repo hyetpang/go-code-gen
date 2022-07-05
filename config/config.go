@@ -28,6 +28,7 @@ type Config struct {
 	DModelName   string // 首字母小写的模型名字
 	ReqParamType string
 	RspParamType string
+	IsAddIp      bool
 	DocSummary   string
 	Temps        *template.Template
 }

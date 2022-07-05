@@ -2,7 +2,7 @@
 {{end}}
 // {{.DocDesc}}请求
 type {{.DModelName}}{{.MethodName}}Req struct {
-
+{{if .IsAddIp}}Ip string `json:"-"`  // 请求人的ip {{else}}{{end}}
 }
 
 // {{.DocDesc}}响应

@@ -14,6 +14,7 @@ func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Con
 		wrapper.Wrap(ctx).Fail(codes.CodeErrParamsInvalid)
 		return
 	}
+	{{if .IsAddIp}}req.Ip = ctx.ClientIP() {{else}}{{end}}
 	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req)
 	if codeErr != nil {
 		wrapper.Wrap(ctx).Fail(codeErr)
