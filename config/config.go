@@ -25,12 +25,14 @@ type Config struct {
 	DocDesc        string `validate:"required"`
 	RspType        string
 
-	DModelName   string // 首字母小写的模型名字
-	ReqParamType string
-	RspParamType string
-	IsAddIp      bool
-	DocSummary   string
-	Temps        *template.Template
+	DModelName     string // 首字母小写的模型名字
+	ReqParamType   string
+	RspParamType   string
+	IsAddIp        bool
+	IsAddUserId    bool
+	IsAddCompanyId bool
+	DocSummary     string
+	Temps          *template.Template
 }
 
 func New(options ...Option) *Config {

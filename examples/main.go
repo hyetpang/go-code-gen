@@ -17,14 +17,17 @@ import (
 
 func main() {
 	strategy.Run(config.New(
-		config.WithModeName("GameAgentChannel"),                          // 模型名字
-		config.WithMethodName("Subordinate"),                             // 要生成的方法
-		config.WithDocDesc("获取我的下级用户id"),                                 // 文档描述
-		config.WithDocUrl("/ultra//api/services/game/agent/subordinate"), // url
-		config.WithDocUrlMethod("GET"),                                   // 请求method
-		config.WithDocTag("经销商"),                                         // 文档分类tags
+		config.WithModeName("DataSync"),                                  // 模型名字
+		config.WithMethodName("Sync"),                                    // 要生成的方法
+		config.WithDocDesc("数据同步,服务器接口，不对前端开放"),                          // 文档描述
+		config.WithDocUrl("/ultra/api/data/sync"),                        // url
+		config.WithDocUrlMethod("POST"),                                  // 请求method
+		config.WithDocTag("数据同步"),                                        // 文档分类tags
 		config.WithLogicPath("/projects/ultrasdk/ultrasdk.hub.go/logic"), // 仓库中的logic目录，
-		config.WithDependencyName("github.com/HyetPang/go-frame"),        // 依赖库
 		config.WithRepoName("ultrasdk.hub.go"),                           // 包含logic目录的仓库目录
+		config.WithDependencyName("github.com/HyetPang/go-frame"),        // 依赖库
+		config.WithAddIpToReqParam(),                                     // 给请求参数增加ip字段
+		config.WithAddUserIdToReqParam(),                                 // 给请求参数增加userId字段
+		config.WithAddCompanyIdToReqParam(),                              // 给请求参数增加companyId字段
 	))
 }

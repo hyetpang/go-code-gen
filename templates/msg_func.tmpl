@@ -3,6 +3,8 @@
 // {{.DocDesc}}请求
 type {{.DModelName}}{{.MethodName}}Req struct {
 {{if .IsAddIp}}Ip string `json:"-"`  // 请求人的ip {{else}}{{end}}
+{{if .IsAddUserId}}UserId int `json:"-"`  // 请求人的id {{else}}{{end}}
+{{if .IsAddCompanyId}}CompanyId int `json:"-"`  // 请求人的主体id {{else}}{{end}}
 }
 
 // {{.DocDesc}}响应

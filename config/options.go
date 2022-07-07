@@ -128,3 +128,17 @@ func WithAddIpToReqParam() Option {
 		c.IsAddIp = true
 	}
 }
+
+// 是否请求参数需要生成user_id字段
+func WithAddUserIdToReqParam() Option {
+	return func(c *Config) {
+		c.IsAddUserId = true
+	}
+}
+
+// 是否请求参数需要生成user_id字段
+func WithAddCompanyIdToReqParam() Option {
+	return func(c *Config) {
+		c.IsAddCompanyId = true
+	}
+}
