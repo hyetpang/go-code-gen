@@ -91,3 +91,10 @@ func MustAlpha(s string) bool {
 	regex := regexp.MustCompile("^[A-Za-z]+$")
 	return regex.MatchString(s)
 }
+
+
+func Panic(err error) {
+	if err != nil {
+		panic(err)
+	}
+}

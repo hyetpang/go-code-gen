@@ -3,6 +3,9 @@ package services
 import (
 	"{{.DependencyName}}/pkgs/base"
 	"{{.RepoName}}/logic/msg"
+	"{{.DependencyName}}/pkgs/logs"
+
+	"go.uber.org/zap"
 )
 
 type {{.DModelName}}Service struct {

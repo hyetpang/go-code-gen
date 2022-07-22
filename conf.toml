@@ -1,0 +1,30 @@
+## 全局配置,如果methods段没有配置全局的同名配置，使用全局配置，反之，使用methods段的同名配置
+[global]
+model_name = "Role"
+doc_tag = "角色"
+logic_path = "/projects/ultrasdk/ultrasdk.center.go/logic"
+repo_name = "ultrasdk.center.go"
+dependency_name = "github.com/HyetPang/go-frame"
+add_ip_to_req_param = true
+add_user_id_to_req_param = true
+add_company_id_to_req_param = false
+
+
+# 要生成的方法
+[[methods]]
+method_name = "Details"
+doc_desc = "角色详情"
+doc_url = "/ultra/backend/api/v1/role"
+doc_url_method = "GET"
+
+# [[methods]]
+# method_name = "Delete"
+# doc_desc = "角色删除"
+# doc_url = "/ultra/backend/api/v1/role"
+# doc_url_method = "DELETE"
+
+# [[methods]]
+# method_name = "List"
+# doc_desc = "角色列表"
+# doc_url = "/ultra/backend/api/v1/roles"
+# doc_url_method = "GET"

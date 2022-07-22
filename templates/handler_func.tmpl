@@ -11,14 +11,21 @@
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
 	if err := ctx.ShouldBind(req); err != nil {
+		logs.Error("参数校验失败: {{.DocUrlMethod}} {{.DocUrl}}", zap.Error(err), zap.Any("req", req), zap.String("url",ctx.Request.URL.Path), zap.String("ip",ctx.ClientIP()){{if .IsAddUserId}}, zap.Int("user_id",ctx.GetInt(consts.GinContextKeyUserId)){{else}}{{end}}{{if .IsAddCompanyId}}, zap.Int("company_id",ctx.GetInt(consts.GinContextKeyCompanyId)){{else}}{{end}})
 		wrapper.Wrap(ctx).Fail(codes.CodeErrParamsInvalid)
 		return
 	}
 	{{if .IsAddIp}}req.Ip = ctx.ClientIP() {{else}}{{end}}
+	{{if .IsAddUserId}}req.UserId = ctx.GetInt(consts.GinContextKeyUserId){{else}}{{end}}
+	{{if .IsAddCompanyId}}req.CompanyId = ctx.GetInt(consts.GinContextKeyCompanyId){{else}}{{end}}
+	req.NanoId = comlib.GenNanoIdString()
+	logs.Info("开始处理请求: {{.DocUrlMethod}} {{.DocUrl}}", zap.Any("req", req), zap.String("url",ctx.Request.URL.Path), zap.String("ip",ctx.ClientIP()))
 	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req)
 	if codeErr != nil {
+		logs.Warn("请求处理出错: {{.DocUrlMethod}} {{.DocUrl}}", zap.String("msg", codeErr.GetMsg()), zap.Uint("code", codeErr.GetCode()), zap.Any("req",req), zap.String("url",ctx.Request.URL.Path), zap.String("ip",ctx.ClientIP()))
 		wrapper.Wrap(ctx).Fail(codeErr)
 		return
 	}
+	logs.Info("请求处理响应: {{.DocUrlMethod}} {{.DocUrl}}", zap.Any("req", req), zap.Any("rsp", data), zap.String("ip",ctx.ClientIP()))
 	wrapper.Wrap(ctx).Success(data)
 }

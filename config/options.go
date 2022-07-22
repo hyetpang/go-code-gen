@@ -105,7 +105,7 @@ func WithLogicPath(logicPath string) Option {
 	return func(c *Config) {
 		c.LogicPath = logicPath
 		if len(c.HandlersPath) < 1 {
-			c.HandlersPath = filepath.Join(c.LogicPath, "handlers")
+			 c.HandlersPath = filepath.Join(c.LogicPath, "handlers")
 		}
 		if len(c.ServicesPath) < 1 {
 			c.ServicesPath = filepath.Join(c.LogicPath, "services")
@@ -118,7 +118,7 @@ func WithLogicPath(logicPath string) Option {
 
 func WithRspParamType() Option {
 	return func(c *Config) {
-		c.RspParamType = "array"
+		c.RspParamType = RspParamTypeObject
 	}
 }
 

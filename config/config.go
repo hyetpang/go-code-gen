@@ -5,6 +5,7 @@ import (
 	"text/template"
 
 	"go-code-gen/common"
+	"go-code-gen/conf"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -37,8 +38,8 @@ type Config struct {
 
 func New(options ...Option) *Config {
 	c := new(Config)
-	c.ReqParamType = "body"
-	c.RspParamType = "object"
+	c.ReqParamType = RspParamTypeBody
+	c.RspParamType = RspParamTypeObject
 	for _, o := range options {
 		o(c)
 	}
@@ -48,11 +49,41 @@ func New(options ...Option) *Config {
 		panic(err)
 	}
 	if common.UpperFirst(c.DocUrlMethod) == http.MethodGet {
-		c.ReqParamType = "query"
+		c.ReqParamType = RspParamTypeQuery
 	}
-	if c.RspParamType == "array" {
+	if c.RspParamType == RspParamTypeArray {
 		c.RspType = "[]"
 	}
 	c.Temps = template.Must(template.ParseGlob("./templates/*.tmpl"))
 	return c
+}
+
+// 开始生成配置
+func NewFromMethods(methods []*conf.Method) []*Config {
+	configs := make([]*Config, len(methods))
+	for methodIndex, method := range methods {
+		options := make([]Option, 0, 10)
+		if *method.AddCompanyIdToReqParam {
+			options = append(options, WithAddCompanyIdToReqParam())
+		}
+		if *method.AddUserIdToReqParam {
+			options = append(options, WithAddUserIdToReqParam())
+		}
+		if *method.AddIpToReqParam {
+			options = append(options, WithAddIpToReqParam())
+		}
+		options = append(options,
+			WithModeName(method.ModelName),            // 模型
+			WithMethodName(method.MethodName),         // 要生成的方法
+			WithDocDesc(method.DocDesc),               // 文档描述
+			WithDocUrl(method.DocUrl),                 // url
+			WithDocUrlMethod(method.DocUrlMethod),     // 请求method
+			WithDocTag(method.DocTag),                 // 文档分类tags
+			WithLogicPath(method.LogicPath),           // 仓库中的logic目录，
+			WithRepoName(method.RepoName),             // 包含logic目录的仓库目录
+			WithDependencyName(method.DependencyName), // 依赖库)
+		)
+		configs[methodIndex] = New(options...)
+	}
+	return configs
 }

@@ -5,8 +5,12 @@ import (
 	"{{.RepoName}}/logic/msg"
 	"{{.RepoName}}/logic/services"
 	"{{.RepoName}}/logic/codes"
+	"{{.DependencyName}}/pkgs/logs"
+	comlib "{{.DependencyName}}/pkgs/common"
+	{{if or .IsAddUserId .IsAddCompanyId}}"{{.RepoName}}/logic/consts"{{else}}{{end}}
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type {{.ModelName}}Handler struct {

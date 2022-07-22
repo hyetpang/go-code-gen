@@ -40,3 +40,9 @@ func Run(c *config.Config) {
 		s.Gen(c)
 	}
 }
+
+func Runs(configs []*config.Config) {
+	for _, c := range configs {
+		Run(c)
+	}
+}
