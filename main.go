@@ -36,6 +36,16 @@ func parseConfig() *conf.Config {
 	if err != nil {
 		log.Fatalf("配置验证出错:%s", err.Error())
 	}
+	var False bool
+	if configData.Global.AddCompanyIdToReqParam == nil {
+		configData.Global.AddCompanyIdToReqParam = &False
+	}
+	if configData.Global.AddIpToReqParam == nil {
+		configData.Global.AddIpToReqParam = &False
+	}
+	if configData.Global.AddUserIdToReqParam == nil {
+		configData.Global.AddUserIdToReqParam = &False
+	}
 	globalValue := reflect.ValueOf(configData.Global)
 	globalType := reflect.TypeOf(configData.Global)
 	for _, method := range configData.Methods {
@@ -46,13 +56,7 @@ func parseConfig() *conf.Config {
 			switch globalFieldValue.Type().Kind() {
 			case reflect.Pointer:
 				// 布尔
-				globalFieldValueElem := globalFieldValue.Elem()
-				if globalFieldValueElem.Type().Kind() != reflect.Bool {
-					log.Fatalln("类型不对，目前字段是指针的，只有bool类型！")
-				}
-				if globalFieldValue.IsNil() && methodFieldValue.IsNil() {
-					methodFieldValue.Set(reflect.ValueOf(false))
-				} else if !globalFieldValue.IsNil() && methodFieldValue.IsNil() {
+				if methodFieldValue.IsNil() {
 					methodFieldValue.Set(globalFieldValue)
 				}
 			case reflect.String:
