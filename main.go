@@ -53,11 +53,16 @@ func parseConfig() *conf.Config {
 			globalFieldValue := globalValue.Field(i)
 			globalFieldType := globalType.Field(i)
 			methodFieldValue := reflect.ValueOf(method).Elem().FieldByName(globalFieldType.Name)
-			switch globalFieldValue.Type().Kind() {
+			switch globalFieldType.Type.Kind() {
 			case reflect.Pointer:
 				// 布尔
-				if methodFieldValue.IsNil() {
-					methodFieldValue.Set(globalFieldValue)
+				underlyingKind := globalFieldType.Type.Elem().Kind()
+				if underlyingKind == reflect.Bool {
+					if methodFieldValue.IsNil() {
+						methodFieldValue.Set(globalFieldValue)
+					}
+				} else {
+					log.Fatalf("未知的类型:%s,%s", underlyingKind.String(), globalFieldType.Name)
 				}
 			case reflect.String:
 				// 字符串
