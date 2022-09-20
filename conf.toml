@@ -1,9 +1,9 @@
 ## 全局配置,如果methods段没有配置全局的同名配置，使用全局配置，如果全局和method都有同名配置，使用methods的覆盖global配置
 [global]
-model_name = "Channel"
-doc_tag = "渠道"
-logic_path = "/projects/ultrasdk/ultrasdk.center.go/logic"
-repo_name = "ultrasdk.center.go"
+model_name = "SyncData"
+doc_tag = "数据同步"
+logic_path = "/projects/ultrasdk/survey-srv/logic"
+repo_name = "survey"
 dependency_name = "github.com/HyetPang/go-frame"
 add_ip_to_req_param = true
 add_user_id_to_req_param = true
@@ -13,13 +13,7 @@ add_user_id_to_req_param = true
 
 # 要生成的方法
 [[methods]]
-method_name = "Copy"                           # 模型生成方法名字
-doc_desc = "创建渠道镜像"                            # 接口描述
-doc_url = "/ultra/backend/api/v1/channel/copy" # 接口地址
+method_name = "SyncUser"                           # 模型生成方法名字
+doc_desc = "中台用户数据同步"                            # 接口描述
+doc_url = "/survey/api/v1/sync/user" # 接口地址
 doc_url_method = "POST"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
-
-# [[methods]]
-# method_name = "List"
-# doc_desc = "角色列表"
-# doc_url = "/ultra/backend/api/v1/roles"
-# doc_url_method = "GET"
