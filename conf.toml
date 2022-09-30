@@ -1,9 +1,9 @@
 ## 全局配置,如果methods段没有配置全局的同名配置，使用全局配置，如果全局和method都有同名配置，使用methods的覆盖global配置
 [global]
-model_name = "Sms"
-doc_tag = "验证码"
-logic_path = "/projects/ultrasdk/survey-srv/logic"
-repo_name = "survey"
+model_name = "Comment"
+doc_tag = "评论"
+logic_path = "/projects/ultrasdk/ultrasdk.hub.go/logic"
+repo_name = "ultrasdk.hub.go"
 dependency_name = "github.com/HyetPang/go-frame"
 add_ip_to_req_param = true
 add_user_id_to_req_param = true
@@ -13,13 +13,7 @@ add_company_id_to_req_param = true
 
 # 要生成的方法
 [[methods]]
-method_name = "Send"                           # 模型生成方法名字
-doc_desc = "发送验证码"                            # 接口描述
-doc_url = "/survey/api/v1/sms/send" # 接口地址
-doc_url_method = "POST"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
-
-[[methods]]
-method_name = "Validate"                           # 模型生成方法名字
-doc_desc = "验证手机验证码"                            # 接口描述
-doc_url = "/survey/api/v1/sms/validate" # 接口地址
-doc_url_method = "POST"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
+method_name = "Delete"                           # 模型生成方法名字
+doc_desc = "删除评论"                            # 接口描述
+doc_url = "/api/v1/comment" # 接口地址
+doc_url_method = "DELETE"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
