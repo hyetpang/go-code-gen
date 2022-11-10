@@ -20,11 +20,8 @@ func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Con
 	{{if .IsAddIp}}req.Ip = ctx.ClientIP() {{else}}{{end}}
 	{{if .IsAddUserId}}req.UserId = ctx.GetInt(consts.GinContextKeyUserId){{else}}{{end}}
 	{{if .IsAddCompanyId}}req.CompanyId = ctx.GetInt(consts.GinContextKeyCompanyId){{else}}{{end}}
-	commonLog = commonLog.With(zap.Object("req", comlib.ObjectMarshaler(func(oe zapcore.ObjectEncoder) {
-		// TODO 请求的参数
-	})))
 	commonLog.Info("开始处理请求")
-	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req)
+	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req,commonLog)
 	if codeErr != nil {
 		commonLog.Warn("请求处理出错", zap.String("msg", codeErr.GetMsg()), zap.Uint("code", codeErr.GetCode()))
 		wrapper.Wrap(ctx).Fail(codeErr)

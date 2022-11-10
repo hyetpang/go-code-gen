@@ -1,11 +1,8 @@
 {{define "service_func.tmpl"}}
 {{end}}
 // {{.DocDesc}} {{.DocUrlMethod}} {{.DocUrl}}
-func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req) ({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp, base.CodeErrI) {
-	commonLog := logs.With(zap.String("nano_id",req.NanoId){{if .IsAddIp}}, zap.String("ip",req.Ip){{else}}{{end}}{{if .IsAddUserId}}, zap.Int("user_id",req.UserId){{else}}{{end}}{{if .IsAddCompanyId}}, zap.Int("company_id",req.CompanyId){{else}}{{end}},zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"),zap.Object("req", comlib.ObjectMarshaler(func(oe zapcore.ObjectEncoder) {
-		// TODO 请求的参数
-	})))
-	commonLog.Info("service 处理请求")
+func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req,commonLog logs.Log) ({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp, base.CodeErrI) {
+	commonLog.Info("service 开始处理请求")
 	// TODO 待实现
 	{{if .RspType}}return {{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp{}, nil {{else}}return &msg.{{.DModelName}}{{.MethodName}}Rsp{}, nil {{end}}
 }
