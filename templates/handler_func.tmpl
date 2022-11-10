@@ -11,7 +11,7 @@
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
 	req.NanoId = comlib.GenNanoIdString()
-	commonLog := logs.With(zap.String("ip",ctx.ClientIP()), zap.String("nano_id", req.NanoId),zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"))
+	commonLog := logs.With(zap.String("ip",ctx.ClientIP()), zap.String("nano_id", req.NanoId),zap.String("url",ctx.Request.Method+":"+ctx.Request.URL.Path))
 	if err := ctx.ShouldBind(req); err != nil {
 		commonLog.Error("参数校验失败", zap.Error(err){{if .IsAddUserId}}, zap.Int("user_id",ctx.GetInt(consts.GinContextKeyUserId)){{else}}{{end}}{{if .IsAddCompanyId}}, zap.Int("company_id",ctx.GetInt(consts.GinContextKeyCompanyId)){{else}}{{end}})
 		wrapper.Wrap(ctx).Fail(codes.CodeErrParamsInvalid)
