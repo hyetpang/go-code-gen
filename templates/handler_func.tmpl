@@ -10,16 +10,15 @@
 // @Router       {{.DocUrl}} [{{.DocUrlMethod}}]
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
-	req.NanoId = comlib.GenNanoIdString()
-	commonLog := logs.With(zap.String("ip",ctx.ClientIP()), zap.String("nano_id", req.NanoId),zap.String("url",ctx.Request.Method+":"+ctx.Request.URL.Path))
+	commonLog := logs.With(zap.String("ip",ctx.ClientIP()), zap.String("nano_id", comlib.GenNanoIdString()),zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"),{{if .IsAddUserId}}, zap.Int("user_id",ctx.GetInt(consts.GinContextKeyUserId)){{else}}{{end}}{{if .IsAddCompanyId}}, zap.Int("company_id",ctx.GetInt(consts.GinContextKeyCompanyId)){{else}}{{end}})
 	if err := ctx.ShouldBind(req); err != nil {
-		commonLog.Error("参数校验失败", zap.Error(err){{if .IsAddUserId}}, zap.Int("user_id",ctx.GetInt(consts.GinContextKeyUserId)){{else}}{{end}}{{if .IsAddCompanyId}}, zap.Int("company_id",ctx.GetInt(consts.GinContextKeyCompanyId)){{else}}{{end}})
+		commonLog.Error("参数校验失败", zap.Error(err))
 		wrapper.Wrap(ctx).Fail(codes.CodeErrParamsInvalid)
 		return
 	}
-	{{if .IsAddIp}}req.Ip = ctx.ClientIP() {{else}}{{end}}
-	{{if .IsAddUserId}}req.UserId = ctx.GetInt(consts.GinContextKeyUserId){{else}}{{end}}
-	{{if .IsAddCompanyId}}req.CompanyId = ctx.GetInt(consts.GinContextKeyCompanyId){{else}}{{end}}
+	commonLog = commonLog.With(zap.Object("req", comlib.ObjectMarshaler(func(oe zapcore.ObjectEncoder) {
+		// TODO 请求参数
+	})))
 	commonLog.Info("开始处理请求")
 	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req,commonLog)
 	if codeErr != nil {

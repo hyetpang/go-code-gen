@@ -2,10 +2,7 @@
 {{end}}
 // {{.DocDesc}}请求
 type {{.DModelName}}{{.MethodName}}Req struct {
-    NanoId string `json:"-"` // 唯一id，主要用于日志标记某一次请求所有日志
-    {{if .IsAddIp}}Ip string `json:"-"`  // 请求人的ip {{else}}{{end}}
-    {{if .IsAddUserId}}UserId int `json:"-"`  // 请求人的id {{else}}{{end}}
-    {{if .IsAddCompanyId}}CompanyId int `json:"-"`  // 请求人的主体id {{else}}{{end}}
+
 }
 
 // {{.DocDesc}}响应
