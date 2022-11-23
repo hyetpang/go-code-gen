@@ -1,7 +1,7 @@
 {{define "service_func.tmpl"}}
 {{end}}
 // {{.DocDesc}} {{.DocUrlMethod}} {{.DocUrl}}
-func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req,commonLog logs.Log) ({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp, base.CodeErrI) {
+func ({{.ModelName}}Service *{{.DModelName}}Service) {{.MethodName}}(req *msg.{{.DModelName}}{{.MethodName}}Req,commonLog *logs.Log) ({{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp, base.CodeErrI) {
 	commonLog.Info("service 开始处理请求")
 	// TODO 待实现
 	{{if .RspType}}return {{.RspType}}*msg.{{.DModelName}}{{.MethodName}}Rsp{}, nil {{else}}return &msg.{{.DModelName}}{{.MethodName}}Rsp{}, nil {{end}}

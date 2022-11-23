@@ -1,19 +1,19 @@
 ## 全局配置,如果methods段没有配置全局的同名配置，使用全局配置，如果全局和method都有同名配置，使用methods的覆盖global配置
 [global]
-model_name = "Cdn"
-doc_tag = "cdn"
+model_name = "AdServeAccount"
+doc_tag = "广告账号"
 logic_path = "/projects/ultrasdk/ultrasdk.hub.go/logic"
 repo_name = "ultrasdk.hub.go"
 dependency_name = "github.com/HyetPang/go-frame"
 add_ip_to_req_param = true
-add_user_id_to_req_param = false
-# add_company_id_to_req_param = true
-add_company_id_to_req_param = false
+add_user_id_to_req_param = true
+add_company_id_to_req_param = true
+# add_company_id_to_req_param = false
 
 
-# 要生成的方法
+
 [[methods]]
-method_name = "Refresh"                           # 模型生成方法名字
-doc_desc = "缓存刷新"                            # 接口描述
-doc_url = "/ultra/cdn/refresh" # 接口地址
-doc_url_method = "POST"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
+method_name = "List"                           # 模型生成方法名字
+doc_desc = "账号列表"                            # 接口描述
+doc_url = "/ultra/api/v1/ad/accounts" # 接口地址
+doc_url_method = "GET"                        # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
