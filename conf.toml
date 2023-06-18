@@ -2,8 +2,8 @@
 [global]
 model_name = "User"
 doc_tag = "用户"
-logic_path = "/Users/hyetpang/projects/aks/game_platform/logic"
-repo_name = "game_platform"
+logic_path = "{{.wd}}/logic"
+repo_name = "{{.repoName}}"
 dependency_name = "github.com/HyetPang/go-frame"
 add_ip_to_req_param = true
 
@@ -11,25 +11,5 @@ add_ip_to_req_param = true
 [[methods]]
 method_name = "SignUp"                  # 模型生成方法名字
 doc_desc = "用户注册"                     # 接口描述
-doc_url = "/game-platform/api/v1/user/signup" # 接口地址
-doc_url_method = "POST"                # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
-
-
-[[methods]]
-method_name = "ChargeNotic"                  # 模型生成方法名字
-doc_desc = "用户充值成功的通知"                     # 接口描述
-doc_url = "/game-platform/api/v1/user/chargenotic" # 接口地址
-doc_url_method = "POST"                # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
-
-
-[[methods]]
-method_name = "Withdraw"                  # 模型生成方法名字
-doc_desc = "用户提现"                     # 接口描述
-doc_url = "/game-platform/api/v1/user/withdraw" # 接口地址
-doc_url_method = "POST"                # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
-
-[[methods]]
-method_name = "withdraw"                  # 模型生成方法名字
-doc_desc = "用户提现"                     # 接口描述
-doc_url = "/game-platform/api/v1/user/withdraw" # 接口地址
+doc_url = "/api/v1/user/signup" # 接口地址
 doc_url_method = "POST"                # 接口请求方式,GET,POST,PUT,DELETE,HEAD等

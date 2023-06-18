@@ -91,12 +91,17 @@ var createCmd = &cobra.Command{
 		common.ExitIfErr(createAndWriteFile(filepath.Join(createDirString, "main.go"), consts.MainFile, createRepoNameString))
 		// Makefile
 		common.ExitIfErr(createAndWriteFile(filepath.Join(createDirString, "Makefile"), consts.MakeFile, nil))
+		// file_gen.conf
+		common.ExitIfErr(createAndWriteFile(filepath.Join(createDirString, "file_gen.conf"), consts.FileGenConf, map[string]string{"Wd": createDirString, "RepoName": createRepoNameString}))
 		// 执行初始化命令
 		common.ExitIfErr(execCommand(createDirString, "go", []string{"mod", "init", createRepoNameString}...))
 		// 执行tidy命令
 		common.ExitIfErr(execCommand(createDirString, "go", []string{"mod", "tidy"}...))
 		// 执行生成models命令
-		common.ExitIfErr(execCommand(filepath.Join(createDirString,"cmd/gorm"),"go","run","main.go"))
+		common.ExitIfErr(execCommand(filepath.Join(createDirString, "cmd/gorm"), "go", "run", "main.go"))
+		// 执行文件生成
+		common.ExitIfErr(execCommand(createDirString, "go-code-gen", "gen", "main.go"))
+
 	},
 }
 

@@ -145,7 +145,8 @@ func Inject(db *gorm.DB) {
 	q.SetDefault(db)
 }`
 	GitIgnoreFile = `logs
-.vscode`
+.vscode
+file_gen.conf`
 	ApiRestFile   = `@host=http://app-api.maxity.io
 @token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzYWx0IjoiXnptI0k5T05id1dpVEpsNnI4aGVyM0BKemhXaFpzWGxsRE1Dc016JTMxJENQUHhJIiwiYXVkIjoibWF4LWFuZHJvaWQiLCJleHAiOjE2ODYzMDk5ODEsInN1YiI6IjMyMCJ9.8LeTEPbdX9G8mAw64nnM6QRbc5GS0RhABIB5rhrW7k9RnYBA_LVD_nBkNuZP8fF-roNhmbvo2vSv5GKSLZFt7g`
 	MainFile = `package main
@@ -197,4 +198,20 @@ import "github.com/hyetpang/go-frame/pkgs/base"
 type User struct {
 	base.Model
 }`
+	FileGenConf = `## 全局配置,如果methods段没有配置全局的同名配置，使用全局配置，如果全局和method都有同名配置，使用methods的覆盖global配置
+[global]
+model_name = "User"
+doc_tag = "用户"
+logic_path = "{{.Wd}}/logic"
+repo_name = "{{.RepoName}}"
+dependency_name = "github.com/HyetPang/go-frame"
+add_ip_to_req_param = true
+
+
+[[methods]]
+method_name = "SignUp"                  # 模型生成方法名字
+doc_desc = "用户注册"                     # 接口描述
+doc_url = "/api/v1/user/signup" # 接口地址
+doc_url_method = "POST"                # 接口请求方式,GET,POST,PUT,DELETE,HEAD等
+`
 )

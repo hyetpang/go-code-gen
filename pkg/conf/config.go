@@ -38,9 +38,9 @@ type Method struct {
 	DocUrlMethod    string `mapstructure:"doc_url_method" validate:"required"`
 }
 
-func ParseConfig() *Config {
+func ParseConfig(confFile string) *Config {
 	configData := new(Config)
-	viper.SetConfigFile("./conf.toml")
+	viper.SetConfigFile(confFile)
 	viper.SetConfigType("toml")
 	err := viper.ReadInConfig()
 	if err != nil {
