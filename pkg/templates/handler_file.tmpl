@@ -4,7 +4,7 @@ import (
 	"{{.DependencyName}}/pkgs/wrapper"
 	"{{.RepoName}}/logic/msg"
 	"{{.RepoName}}/logic/services"
-	"{{.RepoName}}/logic/codes"
+	"{{.DependencyName}}/pkg/base"
 	"{{.DependencyName}}/pkgs/logs"
 	comlib "{{.DependencyName}}/pkgs/common"
 	{{if or .IsAddUserId .IsAddCompanyId}}"{{.RepoName}}/logic/consts"{{else}}{{end}}

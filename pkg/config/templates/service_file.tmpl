@@ -1,0 +1,17 @@
+package services
+
+import (
+	"{{.DependencyName}}/pkgs/base"
+	"{{.RepoName}}/logic/msg"
+	"{{.DependencyName}}/pkgs/logs"
+)
+
+type {{.DModelName}}Service struct {
+
+}
+
+func new{{.DModelName}}Service() *{{.DModelName}}Service {
+	return &{{.DModelName}}Service{}
+}
+
+{{template "service_func.tmpl" .}}

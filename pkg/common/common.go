@@ -1,9 +1,16 @@
 package common
 
 import (
+	"os"
 	"regexp"
 	"strings"
 )
+
+func ExitIfErr(e error) {
+	if e != nil {
+		os.Exit(-1)
+	}
+}
 
 // snake string, XxYy to xx_yy , XxYY to xx_yy
 func SnakeString(s string) string {
@@ -91,7 +98,6 @@ func MustAlpha(s string) bool {
 	regex := regexp.MustCompile("^[A-Za-z]+$")
 	return regex.MatchString(s)
 }
-
 
 func Panic(err error) {
 	if err != nil {

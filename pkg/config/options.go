@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"go-code-gen/common"
+	"go-code-gen/pkg/common"
 
 	"golang.org/x/exp/slices"
 )
@@ -105,7 +105,7 @@ func WithLogicPath(logicPath string) Option {
 	return func(c *Config) {
 		c.LogicPath = logicPath
 		if len(c.HandlersPath) < 1 {
-			 c.HandlersPath = filepath.Join(c.LogicPath, "handlers")
+			c.HandlersPath = filepath.Join(c.LogicPath, "handlers")
 		}
 		if len(c.ServicesPath) < 1 {
 			c.ServicesPath = filepath.Join(c.LogicPath, "services")
@@ -126,19 +126,5 @@ func WithRspParamType() Option {
 func WithAddIpToReqParam() Option {
 	return func(c *Config) {
 		c.IsAddIp = true
-	}
-}
-
-// 是否请求参数需要生成user_id字段
-func WithAddUserIdToReqParam() Option {
-	return func(c *Config) {
-		c.IsAddUserId = true
-	}
-}
-
-// 是否请求参数需要生成user_id字段
-func WithAddCompanyIdToReqParam() Option {
-	return func(c *Config) {
-		c.IsAddCompanyId = true
 	}
 }

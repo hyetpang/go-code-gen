@@ -1,12 +1,15 @@
 package strategy
 
 import (
+	_ "embed"
 	"errors"
 	"os"
 	"path/filepath"
 
-	"go-code-gen/config"
+	"go-code-gen/pkg/config"
 )
+
+
 
 type handlerStrategy struct{}
 

@@ -3,7 +3,7 @@ package strategy
 import (
 	"os"
 
-	"go-code-gen/config"
+	"go-code-gen/pkg/config"
 )
 
 func fileCreate(filePath, tempFile string, c *config.Config) {

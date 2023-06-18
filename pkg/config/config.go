@@ -1,11 +1,12 @@
 package config
 
 import (
+	"embed"
 	"net/http"
 	"text/template"
 
-	"go-code-gen/common"
-	"go-code-gen/conf"
+	"go-code-gen/pkg/common"
+	"go-code-gen/pkg/conf"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -36,6 +37,9 @@ type Config struct {
 	Temps          *template.Template
 }
 
+//go:embed templates
+var templateFiles embed.FS
+
 func New(options ...Option) *Config {
 	c := new(Config)
 	c.ReqParamType = RspParamTypeBody
@@ -54,7 +58,8 @@ func New(options ...Option) *Config {
 	if c.RspParamType == RspParamTypeArray {
 		c.RspType = "[]"
 	}
-	c.Temps = template.Must(template.ParseGlob("./templates/*.tmpl"))
+	// c.Temps = template.Must(template.ParseGlob("./templates/*.tmpl"))
+	c.Temps = template.Must(template.ParseFS(templateFiles, "*.tmpl"))
 	return c
 }
 
@@ -63,12 +68,6 @@ func NewFromMethods(methods []*conf.Method) []*Config {
 	configs := make([]*Config, len(methods))
 	for methodIndex, method := range methods {
 		options := make([]Option, 0, 10)
-		if *method.AddCompanyIdToReqParam {
-			options = append(options, WithAddCompanyIdToReqParam())
-		}
-		if *method.AddUserIdToReqParam {
-			options = append(options, WithAddUserIdToReqParam())
-		}
 		if *method.AddIpToReqParam {
 			options = append(options, WithAddIpToReqParam())
 		}
