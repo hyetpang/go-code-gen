@@ -16,19 +16,19 @@ type Config struct {
 
 // 全局配置
 type Global struct {
-	AddIpToReqParam *bool  `mapstructure:"add_ip_to_req_param"` // 	请求参数增加Ip
-	ModelName       string `mapstructure:"model_name"`          // 方法名字
-	DocTag          string `mapstructure:"doc_tag"`             // 文档显示的标签
-	LogicPath       string `mapstructure:"logic_path"`          // logic 路径
-	RepoName        string `mapstructure:"repo_name"`           // 仓库名字
-	DependencyName  string `mapstructure:"dependency_name"`     // 依赖名字
+	AddIpToReqParam *bool  `mapstructure:"add_ip_to_req_param"`                  // 	请求参数增加Ip
+	ModelName       string `mapstructure:"model_name"`                           // 方法名字
+	DocTag          string `mapstructure:"doc_tag"`                              // 文档显示的标签
+	ProjectRootDir  string `mapstructure:"project_root_dir" validate:"required"` // logic 路径
+	RepoName        string `mapstructure:"repo_name"`                            // 仓库名字
+	DependencyName  string `mapstructure:"dependency_name"`                      // 依赖名字
 }
 
 // 自定义配置
 type Method struct {
 	ModelName       string `mapstructure:"model_name" validate:"required"`
 	DocTag          string `mapstructure:"doc_tag" validate:"required"`
-	LogicPath       string `mapstructure:"logic_path" validate:"required"`
+	ProjectRootDir  string `mapstructure:"project_root_dir" validate:"required"`
 	RepoName        string `mapstructure:"repo_name" validate:"required"`
 	DependencyName  string `mapstructure:"dependency_name" validate:"required"`
 	AddIpToReqParam *bool  `mapstructure:"add_ip_to_req_param" validate:"required"`

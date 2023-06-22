@@ -10,22 +10,22 @@
 // @Router       {{.DocUrl}} [{{.DocUrlMethod}}]
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
-	commonLog := logs.With(zap.String("ip",ctx.ClientIP()), zap.String("nano_id", comlib.GenNanoIdString()),zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"))
+	commonLog := logs.With(common.GenZapNanoId,zap.String("ip",ctx.ClientIP()), zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"))
 	if err := ctx.ShouldBind(req); err != nil {
 		commonLog.Error("参数校验失败", zap.Error(err))
-		wrapper.Wrap(ctx).Fail(base.CodeErrParamsInvalid)
+		common.Wrap(ctx).Fail(base.CodeErrParamsInvalid)
 		return
 	}
-	commonLog = commonLog.With(zap.Object("req", comlib.ObjectMarshaler(func(oe zapcore.ObjectEncoder) {
+	commonLog = commonLog.With(zap.Object("req", common.ObjectMarshaler(func(oe zapcore.ObjectEncoder) {
 		// TODO 请求参数
 	})))
 	commonLog.Info("开始处理请求")
 	data, codeErr := {{.ModelName}}Handler.{{.ModelName}}Service.{{.MethodName}}(req,commonLog)
 	if codeErr != nil {
 		commonLog.Warn("请求处理出错", zap.String("msg", codeErr.GetMsg()), zap.Uint("code", codeErr.GetCode()))
-		wrapper.Wrap(ctx).Fail(codeErr)
+		common.Wrap(ctx).Fail(codeErr)
 		return
 	}
 	commonLog.Info("请求处理成功", zap.Any("rsp", data))
-	wrapper.Wrap(ctx).Success(data)
+	common.Wrap(ctx).Success(data)
 }

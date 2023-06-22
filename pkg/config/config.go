@@ -15,7 +15,7 @@ type Config struct {
 	MethodName     string `validate:"required"` // 方法名
 	ModelName      string `validate:"required"` // 模型名字
 	FilePrefix     string `validate:"required"`
-	LogicPath      string
+	ProjectRootDir string
 	ServicesPath   string `validate:"required"` // 生成的services路径
 	HandlersPath   string `validate:"required"` // 生成的handlers路径
 	MsgPath        string `validate:"required"` // 生成的msg路径
@@ -58,8 +58,7 @@ func New(options ...Option) *Config {
 	if c.RspParamType == RspParamTypeArray {
 		c.RspType = "[]"
 	}
-	// c.Temps = template.Must(template.ParseGlob("./templates/*.tmpl"))
-	c.Temps = template.Must(template.ParseFS(templateFiles, "*.tmpl"))
+	c.Temps = template.Must(template.ParseFS(templateFiles, "templates/*.tmpl"))
 	return c
 }
 
@@ -78,7 +77,7 @@ func NewFromMethods(methods []*conf.Method) []*Config {
 			WithDocUrl(method.DocUrl),                 // url
 			WithDocUrlMethod(method.DocUrlMethod),     // 请求method
 			WithDocTag(method.DocTag),                 // 文档分类tags
-			WithLogicPath(method.LogicPath),           // 仓库中的logic目录，
+			WithProjectRoot(method.ProjectRootDir),    // 仓库中的logic目录，
 			WithRepoName(method.RepoName),             // 包含logic目录的仓库目录
 			WithDependencyName(method.DependencyName), // 依赖库)
 		)

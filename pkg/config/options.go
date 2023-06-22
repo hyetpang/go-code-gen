@@ -101,17 +101,17 @@ func WithDocSummary(docSummary string) Option {
 	}
 }
 
-func WithLogicPath(logicPath string) Option {
+func WithProjectRoot(projectRootDir string) Option {
 	return func(c *Config) {
-		c.LogicPath = logicPath
+		c.ProjectRootDir = projectRootDir
 		if len(c.HandlersPath) < 1 {
-			c.HandlersPath = filepath.Join(c.LogicPath, "handlers")
+			c.HandlersPath = filepath.Join(c.ProjectRootDir, "logic", "handlers")
 		}
 		if len(c.ServicesPath) < 1 {
-			c.ServicesPath = filepath.Join(c.LogicPath, "services")
+			c.ServicesPath = filepath.Join(c.ProjectRootDir, "logic", "services")
 		}
 		if len(c.MsgPath) < 1 {
-			c.MsgPath = filepath.Join(c.LogicPath, "msg")
+			c.MsgPath = filepath.Join(c.ProjectRootDir, "pkg", "msg")
 		}
 	}
 }

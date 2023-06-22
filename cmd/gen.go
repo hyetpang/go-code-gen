@@ -8,6 +8,9 @@ import (
 	"go-code-gen/pkg/conf"
 	"go-code-gen/pkg/config"
 	"go-code-gen/pkg/strategy"
+	"log"
+	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -24,7 +27,11 @@ var genCmd = &cobra.Command{
 			return
 		}
 		if len(confFile) <= 0 {
-			confFile = "./file_gen.conf"
+			cwd, err := os.Getwd()
+			if err != nil {
+				log.Fatal("获取工作目录出错:", err.Error())
+			}
+			confFile = filepath.Join(cwd, "file_gen.conf")
 		}
 		configData := conf.ParseConfig(confFile)
 		configs := config.NewFromMethods(configData.Methods)
