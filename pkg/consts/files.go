@@ -46,8 +46,10 @@ max_idle_time = 30                                                              
 max_life_time = 60                                                                             # 单位：分钟
 max_idle_conns = 10                                                                            # 最大的空闲连接
 max_open_conns = 100                                                                           # 最大打开的连接数
-table_prefix = ""                                                                            # 表前缀
-name = "default"
+table_prefix = ""                                                                              # 表前缀
+gorm_log_ignore_record_not_found_error = true                                                  # 是否忽略gorm没找到记录的日志打印
+gorm_log_level = 3																			   # gorm日志级别,1=>静默，什么都不打印,2=>error,3=>warn,4=>info,sql在4级别打印
+name = "default"																			   # 连接的名字，多个mysql配置可以根据这个区分,必须存在一个default
 
 [redis] 				# redis 配置
 addr = "127.0.0.1:6379" # redis连接地址
