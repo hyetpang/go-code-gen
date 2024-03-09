@@ -165,7 +165,7 @@ func execCommand(wd, command string, args ...string) error {
 		return err
 	}
 	if err := initCmd.Start(); err != nil {
-		fmt.Println("执行命令出错:", err.Error())
+		fmt.Println("执行命令出错:", err.Error(), ",wd:", wd, ",command:", command)
 		return err
 	}
 	initCmd.Stderr = os.Stderr

@@ -111,7 +111,7 @@ func WithProjectRoot(projectRootDir string) Option {
 			c.ServicesPath = filepath.Join(c.ProjectRootDir, "logic", "services")
 		}
 		if len(c.MsgPath) < 1 {
-			c.MsgPath = filepath.Join(c.ProjectRootDir, "pkg", "msg")
+			c.MsgPath = filepath.Join(c.ProjectRootDir, "logic", "msg")
 		}
 	}
 }

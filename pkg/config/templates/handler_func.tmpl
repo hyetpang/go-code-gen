@@ -10,7 +10,7 @@
 // @Router       {{.DocUrl}} [{{.DocUrlMethod}}]
 func ({{.ModelName}}Handler *{{.ModelName}}Handler) {{.MethodName}}(ctx *gin.Context) {
 	req := new(msg.{{.DModelName}}{{.MethodName}}Req)
-	commonLog := logs.With(common.GenZapNanoId,zap.String("ip",ctx.ClientIP()), zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"))
+	commonLog := logs.With(common.GenZapNanoId(),zap.String("ip",ctx.ClientIP()), zap.String("url","{{.DocUrlMethod}} {{.DocUrl}}"))
 	if err := ctx.ShouldBind(req); err != nil {
 		commonLog.Error("参数校验失败", zap.Error(err))
 		common.Wrap(ctx).Fail(base.CodeErrParamsInvalid)

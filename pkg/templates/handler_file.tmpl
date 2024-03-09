@@ -1,10 +1,9 @@
 package handlers
 
 import (
-	"{{.DependencyName}}/pkgs/wrapper"
 	"{{.RepoName}}/logic/msg"
 	"{{.RepoName}}/logic/services"
-	"{{.DependencyName}}/pkg/base"
+	"{{.DependencyName}}/pkgs/base"
 	"{{.DependencyName}}/pkgs/logs"
 	comlib "{{.DependencyName}}/pkgs/common"
 	{{if or .IsAddUserId .IsAddCompanyId}}"{{.RepoName}}/logic/consts"{{else}}{{end}}
