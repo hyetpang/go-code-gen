@@ -1,9 +1,10 @@
 package conf
 
 import (
-	"go-code-gen/pkg/common"
 	"log"
 	"reflect"
+
+	"github.com/hyetpang/go-code-gen/pkg/common"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/spf13/viper"

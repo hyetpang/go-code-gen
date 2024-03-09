@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"go-code-gen/pkg/config"
+	"github.com/hyetpang/go-code-gen/pkg/config"
 )
 
 type handlerStrategy struct{}

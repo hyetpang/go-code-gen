@@ -1,4 +1,4 @@
-module go-code-gen
+module github.com/hyetpang/go-code-gen
 
 go 1.20
 

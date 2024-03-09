@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"go-code-gen/pkg/common"
+	"github.com/hyetpang/go-code-gen/pkg/common"
 
 	"golang.org/x/exp/slices"
 )

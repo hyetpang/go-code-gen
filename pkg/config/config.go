@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"text/template"
 
-	"go-code-gen/pkg/common"
-	"go-code-gen/pkg/conf"
+	"github.com/hyetpang/go-code-gen/pkg/common"
+	"github.com/hyetpang/go-code-gen/pkg/conf"
 
 	"github.com/go-playground/validator/v10"
 )

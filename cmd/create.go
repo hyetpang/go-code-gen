@@ -6,14 +6,15 @@ package cmd
 import (
 	"bufio"
 	"fmt"
-	"go-code-gen/pkg/common"
-	"go-code-gen/pkg/consts"
-	"go-code-gen/pkg/platform/newline"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"text/template"
+
+	"github.com/hyetpang/go-code-gen/pkg/common"
+	"github.com/hyetpang/go-code-gen/pkg/consts"
+	"github.com/hyetpang/go-code-gen/pkg/platform/newline"
 
 	"github.com/spf13/cobra"
 )

@@ -3,12 +3,13 @@ package strategy
 import (
 	"bufio"
 	"bytes"
-	"go-code-gen/pkg/common"
-	"go-code-gen/pkg/platform/newline"
 	"io"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/hyetpang/go-code-gen/pkg/common"
+	"github.com/hyetpang/go-code-gen/pkg/platform/newline"
 )
 
 // 为生成的service以及handler结构体放到fx中注册

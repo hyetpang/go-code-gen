@@ -1,6 +1,6 @@
 package consts
 
-import "go-code-gen/pkg/platform/newline"
+import "github.com/hyetpang/go-code-gen/pkg/platform/newline"
 
 const (
 	GormFile = `package main

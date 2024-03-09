@@ -5,12 +5,13 @@ package cmd
 
 import (
 	"fmt"
-	"go-code-gen/pkg/conf"
-	"go-code-gen/pkg/config"
-	"go-code-gen/pkg/strategy"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/hyetpang/go-code-gen/pkg/conf"
+	"github.com/hyetpang/go-code-gen/pkg/config"
+	"github.com/hyetpang/go-code-gen/pkg/strategy"
 
 	"github.com/spf13/cobra"
 )

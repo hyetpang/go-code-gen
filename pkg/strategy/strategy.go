@@ -1,6 +1,6 @@
 package strategy
 
-import "go-code-gen/pkg/config"
+import "github.com/hyetpang/go-code-gen/pkg/config"
 
 type Strategy interface {
 	Gen(*config.Config)
